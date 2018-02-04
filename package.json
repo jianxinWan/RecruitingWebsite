@@ -1,0 +1,35 @@
+{
+  "name": "recruitweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^2.6.0",
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.2",
+    "express-static": "^1.2.5",
+    "gbk": "^0.1.0",
+    "iconv-lite": "^0.4.19",
+    "mysql": "^2.15.0",
+    "request": "^2.83.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sun111sunshine/RecruitingWebsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sun111sunshine/RecruitingWebsite/issues"
+  },
+  "homepage": "https://github.com/sun111sunshine/RecruitingWebsite#readme"
+}
