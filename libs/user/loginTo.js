@@ -1,7 +1,5 @@
 var  request = require('request');
-var cheerio = require('cheerio');   //爬虫分析
-var async = require('async');       //流程控制
-var gbk = require('gbk');           //转编码
+var cheerio = require('cheerio');
 var iconv = require('iconv-lite');
 
 //自定义模块
@@ -57,17 +55,43 @@ function login(username, password, verCode, session, callback) {
                 var $ = cheerio.load(newbody);
                 if (!$("#form1").html()) {
                     var name = $("#xhxm").text().split('同学')[0];
-                    console.log(name);
-                    getInfo(username,name,session,function(obj){
-                        if(obj.err){
-                            console.log(obj.errInfo);
-                        }else{
-                            callback(obj);
-                        }
-                    });
+                    if(name){
+                        getInfo(username,name,session,function(obj){
+                            if(obj.err){
+                                callback({err:true,errInfo:obj.errInfo,result:null});
+                            }else{
+                                callback({err:false,errInfo:null,result:obj.result});
+                            }
+                        });
+                    }else{
+                        callback({err:true,errInfo:"getInfo have an erro!",result:null});
+                    }
+                }else{
+                    var errInfo = $("#form1").html().split("alert('")[1].split("');")[0];
+                    if (errInfo == '验证码不正确！！') {
+                        callback({
+                            err: true,
+                            errInfo: 'vCode err',
+                            result:null
+                        });
+                    }
+                    if (errInfo == '密码错误！！') {
+                        callback({
+                            err: true,
+                            errInfo: 'password err',
+                            result:null
+                        });
+                    }
+                    if (errInfo == '用户名不存在或未按照要求参加教学活动！！') {
+                        callback({
+                            err: true,
+                            errInfo: "username err",
+                            result:null
+                        });
+                    }
                 }
             }else{
-                //处理其他情况
+                //处理其他情况，服务器错误
                 callback({
                     err: true,
                     errtype: "severs error"
