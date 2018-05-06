@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>query</title>
+    <link rel="stylesheet" href="../css/query.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div id="all" >
+    <div id="header">
+        <div class="head-left">hello xiyou3G</div>
+        <div class="head-right">
+            <div class="user-picter" style="background-image: url('../images/admin.jpg');background-repeat: no-repeat;background-size: 100% auto"></div>
+            <div class="username">xiyou3G</div>
+            <div id="quit">
+                <a href="/admin/quit">注销</a>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="cont-left">
+            <ul id="function">
+                <a href="/admin/query"><li>查询信息</li></a>
+                <a href="/admin/insert"><li>增加信息</li></a>
+                <a href="/admin/delate"><li>删除修改</li></a>
+                <a href="/admin/sendMess"><li>短信发送</li></a>
+                <a href="/admin/searchState"><li>状态查询</li></a>
+            </ul>
+        </div>
+        <div class="cont-right">
+            <div id="iframeBox">
+                <div id="queryAll">
+                    <div id="queryHeader">
+                        <div id="funBtn">
+                            <div id="fun-left">
+                            </div>
+                            <ul>
+                                <li id="queryAll">删除信息</li>
+                                <li id="queryByGroup">查询修改</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr style=" border: 2px solid #199F93; border-bottom: none;">
+                    <div id="queryContent">
+                        <fieldset class="infoTable">
+                            <legend>数据列表</legend>
+                            <div>
+                                <table class="infolist">
+                                    <tr>
+                                        <th>学号</th>
+                                        <th>姓名</th>
+                                        <th>班级</th>
+                                        <th>电话</th>
+                                        <th>email</th>
+                                        <th>面试方向</th>
+                                        <th>面试状态</th>
+                                        <th>删除信息</th>
+                                    </tr>
+                                    <% for(var i=0;i<usersInfo.length;i++){ %>
+                                    <tr>
+                                        <th><%=usersInfo[i].username%></th>
+                                        <th><%=usersInfo[i].name%></th>
+                                        <th><%=usersInfo[i].class%></th>
+                                        <th><%=usersInfo[i].phone%></th>
+                                        <th><%=usersInfo[i].email%></th>
+                                        <th><%=usersInfo[i].direction%></th>
+                                        <th><%=usersInfo[i].state%></th>
+                                        <td>
+                                            <a href="?act=mod&username=<%=usersInfo[i].username%>" style="color: gray;">修改</a>
+                                            <a href="?act=del&username=<%=usersInfo[i].username%>" style="color: gray;" onclick="return confirm('你真的要删吗？')">删除</a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </table>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div id="footer"></div>
+</div>
+</body>
+</html>

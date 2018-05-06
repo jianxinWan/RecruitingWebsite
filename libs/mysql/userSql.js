@@ -1,14 +1,13 @@
 var UserSQL = {
-    insertUser:'INSERT INTO user_table(username,password,date,type,openid) VALUES(?,?,?,?,?)',//插入
-    updata:'UPDATE user_table SET type = ?,id = ? WHERE username = ? AND password = ? ',//更新
-    queryAll:'SELECT * FROM user_table',//查询所有
-    getUserByOpenid:'SELECT * FROM user_table WHERE id = ? ',//查询id
-    getUserByInfo:'SELECT * FROM user_table WHERE id = ? AND password = ? ',//查询用户信息
-    deleteAllInfo:'DELETE FROM article_table',//删除所有
-    deleteAllBannerInfo:'DELETE FROM banner_table',
-    //插入文章信息
-    insertArticleInfo:"INSERT INTO article_table(id,author,author_src,article_title,post_time,article_summary,content,n_like) VALUES(?,?,?,?,?,?,?,?)",
-    //上传banner信息
-    insertBannerInfo:"INSERT INTO banner_table(id,title,sub_title,src,bannerSrc) VALUES(?,?,?,?,?)"
+    //admin
+    insertUser:'INSERT INTO adminLogin(username,password) VALUES(?,?)',//插入
+    getAdminById:'SELECT * FROM adminLogin WHERE password = ? AND WHERE id = ? ',//查询id
+    deleteAllInfo:'DELETE FROM adminLogin',//删除所有
+    queryAll:'SELECT * FROM adminLogin', //查询所有
+    //users
+    queryAllStudent:'SELECT * FROM studentinfo',//查询所有
+    queryInfoById:'SELECT * FROM studentinfo WHERE username = ？',
+    deleteByUsername:'SELECT * FROM studentinfo WHERE username=?',//根据学号删除
+    insertStudent:'INSERT INTO studentinfo(username,name,class,phone,email,leaveWord,state,direction) VALUES(?,?,?,?,?,?,?,?)'
 };
 module.exports = UserSQL;
